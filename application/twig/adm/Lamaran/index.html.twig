@@ -1,0 +1,127 @@
+{% extends 'adm/layout.html.twig' %}
+
+{% block content %}
+<style type="text/css">
+  
+  .ng-cloak { 
+    display: none !important;
+  }
+
+  .lcicon:hover {
+    color: #337ab7;
+  }
+</style>	
+<div class="row ng-cloak" ng-app="app" ng-controller="LamaranController">
+
+    <div class="col-md-12" ng-show="mainGrid">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+          <div class="col-md-12" style="padding-left: 0px">
+            <div class="col-md-4" style="padding-left: 0px;">
+              <label>Lowongan</label>
+              
+              <select class="form-control" name="Pendidikan" required="required" ng-model="mData.lowongan" required ng-disabled="disCabang">
+                  <option value="">- Pilih -</option>
+                  <option ng-repeat="a in dataLowongan" ng-value="a.lowonganID" ng-bind="a.lowonganNama"></option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12" style="text-align: right;padding-right: 0px;">
+            <button class="btn btn-primary" ng-click="getdata()">  
+                <i class="fa fa-search"></i>  Search
+                <!-- <span class="glyphicon glyphicon-search"></span> -->
+              </button>
+          </div>
+          <!-- <div class="col-md-6" style="padding-left: 0px;">
+            <a class="btn btn-primary" ng-click="TambahButton()">
+              <i class="fa fa-plus"></i> Tambah Data
+            </a>
+          </div> -->
+
+          <!-- <div class="col-md-6 pull-right" style="padding-left: 0px;text-align: right;padding-right:0px;" >
+            <i class="fa fa-refresh btn lcicon" aria-hidden="true" style="font-size:25px" title="Refresh" ng-click="getData()"></i>
+          </div> -->
+        </div>
+
+        <div ui-grid="gridOptions1" ui-grid-pagination class="grid">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" ng-show="detailForm">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+
+          <form name="myForm">
+
+              <div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+                <a class="btn btn-default pull-right" ng-click="KembaliButton()">
+                  <i class="fa fa-mail-reply"></i> Kembali
+                </a>
+              </div>
+              <div class="col-md-12">
+                <h3 ng-bind="lowonganChoosed.lowonganNama"></h3>                  
+              </div>
+              <div class="col-md-6" style="padding-left: 0px;">
+               
+
+                <div class="col-md-12">
+                  Nama : <span ng-bind="dataDetail.nama"></span>  
+                </div>
+                <div class="col-md-12">
+                  Usia : <span ng-bind="dataDetail.usia"></span> Tahun 
+                </div>
+                <div class="col-md-12">
+                  Telpon : 0<span ng-bind="dataDetail.telpon"></span> 
+                </div>
+                <div class="col-md-12">
+                  Email : <span ng-bind="dataDetail.email"></span> 
+                </div>
+                <div class="col-md-12">
+                  Pendidikan : <span ng-bind="dataDetail.pendidikanName"></span> 
+                </div>
+                <div class="col-md-12">
+                  Pengalaman Kerja : <span ng-bind="dataDetail.tahun"></span> Tahun <span ng-bind="dataDetail.bulan"></span> Bulan
+                </div>
+
+                <div class="col-md-12">
+                  Status : <span ng-bind="dataDetail.status" style="color: green;" ng-if="dataDetail.status == 'Undangan Interview'"></span> <span ng-bind="dataDetail.status" style="color: red;"  ng-if="dataDetail.status != 'Undangan Interview'"></span>
+                </div>
+
+                <div class="col-md-12" ng-if="dataDetail.status == 'Undangan Interview'">
+                  Tanggal Interview : <span ng-bind="dataDetail.tanggalUndangan" ></span>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12">
+                 <label>Kemampuan </label> :
+                 <div class="col-md-12" style="padding-left: 0px;" ng-repeat="a in dataDetail.Skills">
+                    <span ng-bind="a.No"></span>. <span ng-bind="a.kemampuan"></span></div> 
+                </div>
+              </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+</div>
+
+</div>
+
+{% endblock  %}
+
+{% block add_javascript %}
+	{{ parent() }}
+
+	<!-- <script type="text/javascript" src="{{ base_url('assets/js/app/mesin.js') }}"></script> -->
+
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Lamaran/LamaranController.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Lamaran/LamaranFactory.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/freamwork.js') }}"></script>
+{% endblock  %}

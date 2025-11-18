@@ -1,0 +1,170 @@
+{% extends 'adm/layout.html.twig' %}
+
+{% block content %}
+<style type="text/css">
+  
+  .ng-cloak { 
+    display: none !important;
+  }
+
+  .lcicon:hover {
+    color: #337ab7;
+  }
+</style>	
+<div class="row ng-cloak" ng-app="app" ng-controller="LowonganController" ng-init="getData()">
+
+    <div class="col-md-12" ng-show="mainGrid">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+
+          <div class="col-md-6" style="padding-left: 0px;">
+            <a class="btn btn-primary" ng-click="TambahButton()">
+              <i class="fa fa-plus"></i> Tambah Data
+            </a>
+          </div>
+
+          <div class="col-md-6 pull-right" style="padding-left: 0px;text-align: right;padding-right:0px;" >
+            <i class="fa fa-refresh btn lcicon" aria-hidden="true" style="font-size:25px" title="Refresh" ng-click="getData()"></i>
+          </div>
+        </div>
+
+        <div ui-grid="gridOptions1" ui-grid-pagination class="grid">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" ng-show="detailForm">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+
+          <form name="myForm">
+
+              <div class="col-md-12" style="padding-left: 0px;">
+                <button class="btn btn-primary" ng-click="simpanButton()" ng-disabled="myForm.$invalid">
+                    <i class="glyphicon glyphicon-ok"></i> Simpan
+                </button>
+                <a class="btn btn-default pull-right" ng-click="KembaliButton()">
+                  <i class="fa fa-mail-reply"></i> Kembali
+                </a>
+              </div>
+
+              <div class="col-md-6" style="padding-left: 0px;">
+                
+                <div class="col-md-12" style="padding-left: 0px;margin-top: 15px;">
+                  <div class="col-md-12" style="padding-left: 0px;">
+                    <div class="form-group">
+                      <label>Lowongan</label><label style="color: red;"> *</label>
+                      <input class="form-control" name="lowonganNama" required type="text" ng-model="mData.lowonganNama" placeholder="Lowongan">
+                      <input class="form-control" name="lowonganID" type="text" ng-model="mData.lowonganID" placeholder="lowonganID" ng-hide="true">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-12" style="padding-left: 0px">
+                  <div class="col-md-12" style="padding-left: 0px;">
+                    <label>Pendidikan Minimal</label>  <label style="color: red;"> *</label>
+                    
+                    <select class="form-control" name="Pendidikan" required="required" ng-model="mData.Pendidikan" required ng-disabled="disCabang">
+                        <option value="">- Pilih -</option>
+                        <option ng-repeat="a in dataPendidikan" ng-value="a.GlobalId" ng-bind="a.Nama"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-12" style="padding-left: 0px;margin-top: 15px;">
+                  <div class="col-md-12" style="padding-left: 0px;">
+                    <div class="form-group">
+                      <label>Minimal Pengalaman Kerja (Tahun)</label><label style="color: red;"> *</label>
+                      <input class="form-control" name="Pengalaman" required type="number" ng-model="mData.Pengalaman" placeholder="Minimal Pengalaman Kerja (Tahun)">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12" style="padding-left: 0px;">
+                  <div class="col-md-12" style="padding-left: 0px;">
+                    <div class="form-group">
+                      <label>Maximal usia (Tahun)</label><label style="color: red;"> *</label>
+                      <input class="form-control" name="usia" required type="number" ng-model="mData.usia" placeholder="Minimal usia (Tahun)">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12" style="padding-left: 0px;">
+                  <div class="col-md-12" style="padding-left: 0px;">
+                    <div class="form-group">
+                      <label>Gaji</label><label style="color: red;"> *</label>
+                      <input class="form-control" name="gaji" required type="text" ng-model="mData.gaji" placeholder="Gaji" ng-keyup="givePattern(mData.gaji,$event)">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-md-6" style="padding-left: 0px;">
+                
+                <div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+                  
+                  <div class="col-md-12" style="margin-top: 20px;padding-left:0px;">
+                    <i class="fa fa-plus-square btn" style="color: #337ab7;font-size: 16px;" aria-hidden="true" title="Tambah Kemampuan"  data-toggle="modal" data-target="#exampleModal"></i>
+                      <label>Kemampuan</label>
+                      
+                  </div>
+                  <div class="col-md-12" style="padding-left: 0px;margin-top: 20px;padding-right: 0px;">
+                    <div class="col-md-12" ng-if="skillData.length == 0"> Tidak Ada Data </div>
+                    <div class="col-md-12" ng-repeat="a in skillData" ng-if="skillData.length > 0">
+                     - <span ng-bind="a.Name"></span><a style="color: red;" class="btn" ng-click="delete(a)"> X</a>
+                    </div>
+                      
+                    <!-- <div class="col-md-3"  ng-repeat="a in ChosedJob.Skills">
+                      <input type="checkbox"  id="vehicle1" name="vehicle1" value="{{a.Name}}"><label> {{a.Name}}</label><br>
+                    </div> -->
+                  </div>
+
+                  
+                </div>
+              </div>
+
+              
+
+          </form>
+          <div class="col-md-12" style="padding-left: 0px;">
+            
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kemampuan</h5>
+                  </div>
+                  <div class="modal-body" style="margin-bottom: 10px;">  
+                    <div class="col-md-12" style="padding-left: 0px;padding-right: 0px;">
+                      <input class="form-control" name="Skills" required type="text" ng-model="mData.Skills" placeholder="Kemampuan">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" ng-click="savePush()" class="btn btn-primary" ng-disabled="mData.Skills == null">Simpan</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">Tutup</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+</div>
+
+</div>
+
+{% endblock  %}
+
+{% block add_javascript %}
+	{{ parent() }}
+
+	<!-- <script type="text/javascript" src="{{ base_url('assets/js/app/mesin.js') }}"></script> -->
+
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Lowongan/LowonganController.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Lowongan/LowonganFactory.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/freamwork.js') }}"></script>
+{% endblock  %}

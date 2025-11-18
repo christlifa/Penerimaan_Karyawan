@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ content_title }}</title>
+	</head>
+
+    <link href="{{ assets_url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ assets_url('assets/css/style.new.css') }}" rel="stylesheet" type="text/css"> 
+    <script src="{{ assets_url('bower_components/jquery/dist/jquery.min.js') }}"></script>
+
+    <script src="{{ base_url('assets/js/angular.min.js') }}"></script>
+    <link rel="styleSheet" href="{{ assets_url('bower_components/angular-ui-grid/ui-grid.min.css') }}"/>
+    <link rel="styleSheet" href="{{ assets_url('bower_components/angular-loading-bar-master/build/loading-bar.min.css') }}"/>
+    <script src="{{ assets_url('bower_components/angular-loading-bar-master/build/loading-bar.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.pagination.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.resize-columns.min.js') }}"></script>
+
+	<script type="text/javascript" src="{{ base_url('assets/js/app/dashboardController.js') }}"></script>
+	<script type="text/javascript" src="{{ base_url('assets/js/app/dashboardFactory.js') }}"></script>
+	<script type="text/javascript" src="{{ base_url('assets/js/freamwork.js') }}"></script>
+	<body ng-app="app" ng-controller="dashboardController">
+
+	<!-- <span ng-bind="test"></span> -->
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 alert alert-info button-action">
+			<button class="btn btn-primary report-print" ng-click="printDapur(dataPrintDapur)">Print</button>
+			<a href="javascript:;" class="btn btn-danger report-close">Tutup</a>
+
+		</div>
+
+		<div class="col-md-12">
+
+			{% block content %}
+	        {% endblock %}
+		</div>
+	
+
+	</body>
+
+  	{% block add_javascript %}
+	<script type="text/javascript">
+        window.APP = {
+            siteUrl: "{{ site_url() }}/",
+            baseUrl: "{{ base_url() }}/"
+        }
+    </script>
+
+    <script src="{{ assets_url('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript">
+	    $(document).ready(function() {
+			$('.report-print').click(function() {
+				// if({{isPrint}} == 1){
+
+					// window.print();
+					return false;
+				// }
+			});
+			$('.report-close').click(function() {
+				window.close();
+				return false;
+			});
+	    });
+
+	    /**
+		 * function detect windows print
+		 */
+
+		var beforePrint = function() {
+			$('.button-action').hide();
+		};
+		var afterPrint = function() {
+			$('.button-action').show();
+		};
+
+		if (window.matchMedia) {
+			var mediaQueryList = window.matchMedia('print');
+			mediaQueryList.addListener(function(mql) {
+			    if (mql.matches) {
+			        beforePrint();
+			    } else {
+			        afterPrint();
+			    }
+			});
+		}
+
+		window.onbeforeprint = beforePrint;
+		window.onafterprint = afterPrint;
+	</script>
+
+	{% endblock %}
+
+
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin - {{ content_title }}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  {% block add_css %}
+
+  <!-- Icon -->
+  <!-- <link rel="icon" type="image/png" href="{{ base_url('assets/images/logo/camar_logo.png') }}" sizes="192x192"> -->
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{ base_url('assets/images/logo/camar_logo.png') }}"> -->
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="{{ base_url('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ base_url('bower_components/font-awesome/css/font-awesome.min.css') }}">
+  <link href="{{ base_url('assets/fonts/material-icons/font.css') }}" rel="stylesheet" type="text/css"> 
+  <!-- sweet alert -->
+  <link rel="stylesheet" href="{{ base_url('bower_components/sweetalert/dist/sweetalert.css') }}">
+  <!--datatables -->
+  <!-- select2 -->
+  <link rel="stylesheet" href="{{ base_url('bower_components/select2/dist/css/select2.min.css') }}">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="{{ base_url('assets/adminlte/plugins/datepicker/datepicker3.css') }}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ base_url('assets/adminlte/plugins/daterangepicker/daterangepicker.css') }}">
+  <!-- bootstrap wysihtml5 - text editor -->
+  
+  <!-- datetime material picker -->
+  <link rel="stylesheet" href="{{ base_url('bower_components/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}">
+
+  <!-- notify -->
+  <link href="{{ base_url('bower_components/notify/notify.css') }}" rel="stylesheet" />
+  <!-- jquery loading -->
+  <!-- <link href="{{ base_url('bower_components/jquery-loading/dist/jquery.loading.min.css') }}" rel="stylesheet" /> -->
+
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ base_url('assets/adminlte/dist/css/AdminLTE.min.css') }}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="{{ base_url('assets/adminlte/dist/css/skins/_all-skins.min.css') }}">
+
+  <!-- custom -->
+  <link rel="stylesheet" type="text/css" href="{{ assets_url('assets/css/style.new.css') }}">
+
+  {% endblock %}
+
+  <!-- jQuery 3.1.1 -->
+  <script src="{{ base_url('bower_components/jquery/dist/jquery.min.js') }}"></script>
+  <!-- jquery form -->
+  <script src="{{ base_url('bower_components/jquery-form/dist/jquery.form.min.js') }}"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{ base_url('bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
+
+  <!-- sweetalert -->
+  <script src="{{ base_url('bower_components/sweetalert/dist/sweetalert.min.js') }}" type="text/javascript"></script>
+  <!-- validate.js -->
+  <script src="{{ base_url('bower_components/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+
+  <!-- Inputmask -->
+  <script src="{{ base_url('bower_components/inputmask/dist/min/jquery.inputmask.bundle.min.js') }}"></script>
+
+  <!-- url -->
+  <script type="text/javascript">
+      window.APP = {
+         siteUrl: "{{ site_url() ~ '/' }}",
+         baseUrl: "{{ base_url() }}",
+         decimal3: function(total) {
+              return Math.round(total * 1000) / 1000;
+          },
+          decimal2: function(total) {
+              return Math.round(total * 100) / 100;
+          },
+          decimalSum: function(integer) {
+              return Math.round((integer) * 1e12) / 1e12;
+          },
+          loader: function() {
+              return $('.loader');
+          },
+          elLoader : '.app-loader',
+          requestAjax: function(url, type, data, dataType, fn) {
+              $.ajax({
+                  url: url,
+                  type: type,
+                  data: data,
+                  dataType: dataType,
+                  success: fn
+              });
+          }
+      }
+  </script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
+</head>
+<!-- sidebar-mini sidebar-collapse -->
+<body class="skin-blue-light">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="{{ site_url('adm/dashboard') }}" class="logo"  style="background-color: #fff;">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">
+      <b>
+        {{ show_config('app_name_short') }}
+      </b>
+      </span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">
+      <b>
+        <img src="{{ base_url('assets/images/logo/clslogo.PNG') }}">
+        <!-- {{ show_config('app_name') }} -->
+      </b>
+      </span>
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <!-- <nav class="navbar navbar-static-top"> -->
+      <!-- Sidebar toggle button-->
+      <!-- <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a> -->
+
+      <!-- <span style="color: #FFF; font-size: 14px;margin-top: 15px;position: absolute;margin-left: 10px;"> -->
+          <!-- <span class="app-date"></span> -->
+          <!-- <span class="app-time"></span> -->
+      <!-- </span> -->
+
+      <!-- <div class="navbar-custom-menu"> -->
+        <!-- <ul class="nav navbar-nav">  -->
+          <!-- User Account: style can be found in dropdown.less -->
+          <!-- <li class="dropdown user user-menu"> -->
+            <!-- <a href="{{ site_url('adm/dashboard/logout') }}"> -->
+              <!-- <img src="{{ base_url('assets/adminlte/img/user.png') }}" class="user-image" alt="User Image"> -->
+              <!-- <i class="fa fa-power-off"></i> -->
+              <!-- <span class="hidden-xs">Logout</span> -->
+            <!-- </a> -->
+          <!-- </li> -->
+        <!-- </ul> -->
+      <!-- </div> -->
+    <!-- </nav> -->
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+    <!--   <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{ base_url('assets/adminlte/img/user.png') }}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>
+          {{ logged_user('NickName') }}
+          </p>
+            <i class="fa fa-circle text-success"></i> Online
+        </div>
+      </div> -->
+      
+      {% include 'adm/menu.html.twig' %}
+
+  </aside>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="col-xs-6" style="margin-left: 0px;padding-left: 0px;">
+          <ol class="breadcrumb pull-left" style="background-color: transparent;">
+            <li><a href="{{ site_url('adm/dashboard') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">{{ content_title }}</li>
+          </ol>
+        </div>
+        <div class="col-xs-6 pull-right" style="text-align: right;margin-top: 15px;">
+          <!-- <li class="dropdown user user-menu"> -->
+            <a href="{{ site_url('adm/dashboard/logout') }}">
+              <!-- <img src="{{ base_url('assets/adminlte/img/user.png') }}" class="user-image" alt="User Image"> -->
+              <i class="fa fa-power-off"></i>
+              <span class="hidden-xs">Logout</span>
+            </a>
+          <!-- </li> -->
+        </div>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+        {% block content %}
+          {% include 'adm/content.html.twig' %}
+        {% endblock %}
+      </section>
+    </div>
+  
+
+   <!-- /.content-wrapper -->
+  <!-- <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 
+      {{ show_config('app_version') }}
+    </div>
+    <strong>
+      Copyright &copy;  {{ show_config('app_year') }}
+      LC -
+      <a href="http://camar-software.com" target="_blank">Camar Software</a> - 
+      {{ show_config('app_name') }}.
+    </strong>
+  </footer> -->
+
+    <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
+
+  <script>
+    $.widget.bridge('uibutton', $.ui.button);
+  </script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <!-- Bootstrap 3.3.7 -->
+
+  {% block add_javascript %}
+    <!-- angularjs -->
+    <script src="{{ base_url('assets/js/angular.min.js') }}"></script>
+    <link rel="styleSheet" href="{{ assets_url('bower_components/angular-ui-grid/ui-grid.min.css') }}"/>
+    <link rel="styleSheet" href="{{ assets_url('bower_components/angular-loading-bar-master/build/loading-bar.min.css') }}"/>
+    <script src="{{ assets_url('bower_components/angular-loading-bar-master/build/loading-bar.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.pagination.min.js') }}"></script>
+    <script src="{{ assets_url('bower_components/angular-ui-grid/ui-grid.resize-columns.min.js') }}"></script>
+    <!-- 
+    <script src="{{ base_url('bower_components/angular-data-table/release/dataTable.min.js') }}" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ assets_url('bower_components/angular-data-table/release/dataTable.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ assets_url('bower_components/angular-data-table/release/material.css') }}"> -->
+
+
+    <script src="{{ base_url('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+    <!-- vue js -->
+    <!-- <script src="{{ base_url('bower_components/vue/dist/vue.min.js') }}"></script>
+    <script src="{{ base_url('bower_components/datatables/media/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('bower_components/datatables/media/js/dataTables.bootstrap.min.js') }}" type="text/javascript"></script> -->
+
+    <!-- select2 -->
+    <script src="{{ base_url('bower_components/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+
+    <script src="{{ base_url('bower_components/notify/notify.js') }}"></script>
+
+    <!-- bootstrap material datetimepicker -->
+    <script src="{{ base_url('bower_components/momentjs/min/moment-with-locales.min.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('bower_components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ base_url('bower_components/angular-chart/Chart.min.js') }}"></script>
+    <script src="{{ base_url('bower_components/angular-chart/angular-chart.min.js') }}"></script>
+
+    <!-- jquery loading -->
+    <script src="{{ base_url('bower_components/blockUI/jquery.blockUI.js') }}"></script>
+
+    <!-- Slimscroll -->
+    <script src="{{ base_url('assets/adminlte/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+    <!-- FastClick -->
+    <script src="{{ base_url('assets/adminlte/plugins/fastclick/fastclick.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ base_url('assets/adminlte/dist/js/adminlte.js') }}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{{ base_url('assets/adminlte/dist/js/demo.js') }}"></script>
+    <script src="{{ assets_url('assets/js/app/datetime.js') }}"></script>
+    <script src="{{ assets_url('assets/js/app/input.js') }}"></script>
+    <script src="{{ assets_url('assets/js/app/form.js') }}"></script>
+
+    <script type="text/javascript">
+        window.DATETIME.init();
+
+        // tricks tooltip (bug in datatable)
+        $("body").tooltip({
+            selector: '[data-toggle="tooltip"]',
+            trigger : 'hover'
+        });
+    </script>
+  {% endblock %}
+
+  </body>
+  </html>
+

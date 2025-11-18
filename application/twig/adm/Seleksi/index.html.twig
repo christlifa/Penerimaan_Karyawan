@@ -1,0 +1,100 @@
+{% extends 'adm/layout.html.twig' %}
+
+{% block content %}
+<style type="text/css">
+  
+  .ng-cloak { 
+    display: none !important;
+  }
+
+  .lcicon:hover {
+    color: #337ab7;
+  }
+  .btn-light:hover{
+    background-color: #00c0ef;
+  }
+</style>	
+<div class="row ng-cloak" ng-app="app" ng-controller="SeleksiController" ng-init="getdata()">
+
+    <div class="col-md-12" ng-show="mainGrid">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+        <!--   <button class="btn btn-primary" ng-click="test()">
+              <i class="fa fa-envelope-open-o"></i> Undang Interview
+          </button> -->
+          <div class="col-md-12" style="margin-bottom: 15px;">
+            <center><h3>Pilih Lowongan</h3></center>
+          </div>
+          <div class="col-md-12 btn btn-light"   ng-repeat ="a in dataLowongan" ng-click="showDetiail(a)" style="border:1px solid #ccc; border-radius: 3px;margin-bottom: 10px;padding-left: 0px;padding-right: 0px;">
+            <h4 ng-bind="a.lowonganNama"></h4>
+            Jumlah Pelamar : <span ng-if="a.Count == undefined">0</span><span ng-if="a.Count != undefined" ng-bind="a.Count"></span> orang
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-12" ng-show="detailForm">
+      <div class="box box-primary">
+        
+        <div class="box-body">
+          <form name="myForm" >
+             <div class="col-md-6">
+                <h4 ng-bind="dataLokerTr.lowonganNama"></h4>
+             </div>
+             <div class="col-md-6" style="padding-left: 0px;text-align: right; margin-top: 10px;">
+               <button class="btn btn-primary" ng-click="sendEmail()" ng-disabled="mData.dateInterview == undefined ||mData.dateInterview == null">
+                   <i class="fa fa-envelope-open-o"></i> Undang Interview
+               </button>
+             </div>
+              <div class="col-md-12">
+                 
+                 <div class="col-md-4" style="padding-left: 0px;padding-right: 0px;margin-top: 15px;">
+                  <div class="col-md-12">
+                  Nama  <input type="text" name="nama" ng-model="mData.nama" class="form-control" ng-disabled="true">
+                  </div>
+                 </div>
+                 
+                 <div class="col-md-4" style="padding-left: 0px;padding-right: 0px;margin-top: 15px;">
+                  <div class="col-md-12">
+                   Email : <input type="text" name="email" ng-model="mData.email" class="form-control" ng-disabled="true"> 
+                  </div>
+                 </div>
+                  <div class="col-md-4" style="padding-left: 0px;padding-right: 0px;margin-top: 15px;">
+                  <div class="col-md-12">
+                   Tanggal : 
+                     <input class="form-control" name="dateInterview" required type="date" ng-model="mData.dateInterview" ng-change="setDate(mData.dateInterview)">
+                  </div>
+                 </div>
+
+                 <div class="col-md-12" style="margin-top: 10px;" ng-hide="mData.dateInterview == undefined ||mData.dateInterview == null">
+                  <textarea class="form-control" style="width: 100%;height: 400px;" ng-disabled="true" ng-model="mData.message"></textarea>
+                 </div>
+            </div>
+              
+              
+
+          </form>
+          
+        </div>
+
+      </div>
+    </div>
+
+
+</div>
+
+</div>
+
+{% endblock  %}
+
+{% block add_javascript %}
+	{{ parent() }}
+
+	<!-- <script type="text/javascript" src="{{ base_url('assets/js/app/mesin.js') }}"></script> -->
+
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Seleksi/SeleksiController.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/app/Seleksi/SeleksiFactory.js') }}"></script>
+  <script type="text/javascript" src="{{ base_url('assets/js/freamwork.js') }}"></script>
+{% endblock  %}

@@ -1,0 +1,268 @@
+@media print{
+ 	@page {
+ 		size: legal landscape;
+ 	}
+
+    body
+    {
+        margin: 0;
+    }
+
+    .font16 {
+    	font-size: 16px;
+    }
+
+    .font14 {
+    	font-size: 14px;
+    }
+
+    .font12 {
+    	font-size: 12px;
+    }
+
+    .font10 {
+    	font-size: 10px;
+    }
+
+    .font8 {
+    	font-size: 8px;
+    }
+
+    .font6 {
+    	font-size: 6px;
+    }
+
+    .width300 {
+    	width: 300px !important;
+    }
+
+    .bold-print {
+        font-weight: bold !important;
+    }
+
+    div.divFooter {
+        position: fixed;
+        left: 0;
+        bottom: 0 !important;
+        visibility: visible !important;
+    }
+
+}
+
+div.divFooter {
+    font-size: 12px;
+    width: 100%;
+    visibility: hidden;
+  }
+
+.font16 {
+    font-size: 16px;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.font10 {
+    font-size: 10px;
+}
+
+.font8 {
+    font-size: 8px;
+}
+
+.font6 {
+    font-size: 6px;
+}
+
+.width300 {
+    width: 300px !important;
+}
+
+.bg-gray {
+    background: #DDD;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.bold-print {
+    font-weight: 1000;
+}
+
+.no-margin {
+	margin: 0 !important;
+}
+
+.width100 {
+    width: 100px;
+}
+
+.width50 {
+    width: 50px;
+}
+
+.color-red {
+    color: #F44336;
+}
+
+.color-green {
+    color: #4CAF50;
+}
+
+.modal-overflow {
+    max-height: calc(110vh - 190px); 
+    overflow-y: auto;
+}
+.remove-href-decoration:hover {
+    text-decoration: none;
+}
+
+label.error, span.error,  div.error {
+	color: red;
+	font-size: 10px;
+}
+
+.not-show {
+	display: none;
+}
+
+.grey {
+	color: #AAA;
+}
+
+tbody tr td.right {
+	text-align: right;
+}
+
+tbody tr td.center {
+	text-align: center;
+}
+
+/**
+ * Custom Datatable
+ */
+table.dataTable thead .sorting {
+	background: url('icon/sort_both.png')
+	no-repeat center right !important;
+}
+
+table.dataTable thead .sorting_asc {
+	background: url('icon/sort_asc.png')
+	no-repeat center right !important;
+}
+
+table.dataTable thead .sorting_desc {
+	background: url('icon/sort_desc.png')
+	no-repeat center right !important;
+}
+
+table.dataTable thead .sorting_asc_disabled {
+	background: url('icon/sort_asc_disabled.png')
+	no-repeat center right !important;
+}
+
+table.dataTable thead .sorting_desc_disabled {
+	background: url('icon/sort_desc_disabled.png')
+	no-repeat center right !important;
+}
+
+table.dataTable thead .sorting_disabled {
+	background: none !important;
+}
+
+div.dataTables_paginate {
+	margin: 0;
+	white-space: nowrap;
+	text-align: right;
+}
+
+.dataTables_filter {
+	text-align: right !important;
+}
+
+/* datatable customize header and footer */
+/* @author HIkmahtiar <hikmahtiar.cool@gmail.com> */
+.table-custom {
+    width: 100% !important;
+}
+
+.table-custom thead tr , .table-custom tfoot tr {
+    background: #EEEEEE !important;
+}
+
+.table-custom td {
+    border: 1px solid #DDD !important;
+}
+
+/**
+ * Change background bootstrap material datetimepicker
+ * @author HIkmahtiar <hikmahtiar.cool@gmail.com> 
+ */
+.dtp div.dtp-date, .dtp div.dtp-time { 
+    background: #3C8DBC;
+}
+
+.dtp table.dtp-picker-days tr > td > a.selected { 
+    background: #3C8DBC; 
+}
+
+.dtp > .dtp-content > .dtp-date-view > header.dtp-header { 
+    background: #72AFD2; 
+}
+
+.dtp .p10 > a { 
+    color: #72AFD2; 
+    text-decoration: none; 
+}
+
+.dtp .dtp-actual-meridien a.selected { 
+    background: #72AFD2;
+}
+
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+
+.table-print td {
+    border: 1px solid #CCC;
+    padding: 2px;
+}
+
+.tableheader tr td {
+    padding: 5px;
+}
+
+/**
+ * Show hide detail table
+ */
+td.details-control {
+    background: url('../images/icons/icon3.png') -52px 630px;
+    cursor: pointer;1
+}
+tr.shown td.details-control {
+    background: url('../images/icons/icon3.png') -162px 665px;
+}
