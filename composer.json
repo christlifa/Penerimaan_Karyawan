@@ -1,0 +1,22 @@
+{
+    "name": "hikmahtiar/camar_evmp",
+    "description": "Aplikasi Evanindo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hikmahtiar.cool",
+            "email": "hikmahtiar.cool@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpexcel": "^1.8",
+        "doctrine/orm": "^2.5"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Entity\\" : "application/models/Entity",
+            "libraries\\" : "application/libraries",
+            "core\\" : "system/core"
+        }
+    }
+}

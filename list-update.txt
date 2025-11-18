@@ -1,0 +1,11 @@
+Update EVMP 171119 
+--------------------
+1. Tabel SpkLotHasil
+   * Tambah kolom NoBatt Varchar allow NULL
+
+
+Update 171219
+1. Tabel SectionSub25
+2. Tabel SectionSub3
+3. Tabel SectionSub34
+4. Tabel SectionSub6
